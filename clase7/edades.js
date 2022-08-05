@@ -43,9 +43,12 @@ function rangoincorrecto(ingresado,min,max){
 // Creo un array y le cargo un objeto de tipo persona.
 const personas = [];
 personas.push(new persona("Miguel Ramirez",1981,7,21,"Cancer"));
+personas.push(new persona("Diego",1982,5,20,"Tauro"));
+personas.push(new persona("Lucia",1989,1,14,"Acuario"));
+let nombre = "";
 //Ingreso de datos del usuario.
 function enviar(){
-let nombre=document.getElementById("nombre").value;
+nombre=document.getElementById("nombre").value;
 diaNacimiento = document.getElementById("dia").value;
 mesNacimiento = document.getElementById("mes").value;
 anioNacimiento = document.getElementById("anio").value;
@@ -55,5 +58,11 @@ for (const persona of personas){
     alert(persona.edad());
  }
 }
-
+function buscar(){
+    let busqueda = document.getElementById("busqueda").value;
+    let resultado = personas.find((elemento) => elemento.nombre == busqueda);
+    alert("Resultado:"+resultado.edad());
+}
 document.getElementById("boton").addEventListener("click",enviar);
+document.getElementById("buscar").addEventListener("click",buscar);
+console.log(personas);
