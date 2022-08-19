@@ -18,6 +18,7 @@ const personas = [];
 const btnAgregar=document.getElementById("agregar");
 const btnEnviar=document.getElementById("boton");
 const btnBuscar=document.getElementById("buscar");
+const btnLimpiar=document.getElementById("limpiar");
 
 // creo la clase persona para futuras asignaciones.
 class persona {
@@ -43,7 +44,22 @@ class persona {
     }
 
 }
-
+function recuperar(){
+    console.log("se ejecuta");
+    if (localStorage.getItem("personas")!=null){
+        totalCampos=1;
+        localPersonas=JSON.parse(localStorage.getItem("personas"));
+        console.log("Paso a recuperar");
+        console.log(localPersonas);
+        for (objeto of localPersonas){
+            personas.push(new persona(objeto));
+            agregar(objeto.nombre,objeto.diaN,objeto.mesN,objeto.anioN);
+            let contenedor = document.createElement("br");
+            campos.append(contenedor);
+            console.log(totalCampos);
+        }
+    }
+}
 //Calculo todos los datos ingresados por el usuario en los campos y los muestro en el HTML.
 function enviar(){
     muestra.innerHTML="";
@@ -60,6 +76,9 @@ function enviar(){
         `<p>${persona.edad()}</p>
         `;
     }
+    localStorage.setItem("personas",JSON.stringify(personas));
+    console.log("Prueba");
+    console.log(localStorage.getItem("personas"));
  return false;
 }
 
@@ -72,34 +91,36 @@ function buscar(){
     return false;
 }
 
-function options(inicial,cantidad){
+function options(inicial,cantidad,seleccionado){
     let cadena="";
     for (i=inicial; i<=cantidad; i++){
-        cadena+= `<option value="${i}">${i}</option>
+        if (i==seleccionado){
+            cadena+= `<option value="${i}" selected>${i}</option>
+            `;            
+        } else {
+            cadena+= `<option value="${i}">${i}</option>
         `;
+    }
     }
     return cadena;
 }
 // Defino una funcion que agrega campos con identificadores contados.
-function agregar(){
+function agregar(nombre,dia,mes,anio){
     let contenedor = document.createElement("span");
-        contenedor.innerHTML+=`Ingrese un Nombre: <input type="text" id="nombre${totalCampos}">
+        contenedor.innerHTML+=`Ingrese un Nombre: <input type="text" id="nombre${totalCampos}" value="${nombre}"">
         <span>Dia de nacimiento: 
             <select name="Dia" id="dia${totalCampos}">
-                ${options(1,30)}
-                <option value="31" selected>31</option>
+                ${options(1,31,dia)}
             </select>
         </span>
         <span>Mes: 
             <Select name="Mes" id="mes${totalCampos}">
-                ${options(1,11)}
-                <option value="12" selected>12</option>
+                ${options(1,12,mes)}
             </Select>
         </span>
         <span>Año: 
             <Select name="Año" id="anio${totalCampos}">
-                ${options(anioActual-130,anioActual-1)}
-                <option value="${anioActual}" selected>${anioActual}</option>
+                ${options(anioActual-130,anioActual,anio)}s
             </Select>
         </span>`;
     campos.append(contenedor);
@@ -107,7 +128,9 @@ function agregar(){
 }
 
 // Ejecucion del Script: Solamente agrega un campo inicial.
-agregar();
+recuperar();
+agregar("",31,12,anioActual);
+console.log("Hola");
 
 
 // Preparo los eventos de escucha para la presion de los botones.
@@ -123,5 +146,14 @@ btnAgregar.addEventListener("click",function(e){
     e.preventDefault();
     let contenedor = document.createElement("br");
     campos.append(contenedor);
-    agregar();
+    agregar("",31,12,anioActual);
+});
+btnLimpiar.addEventListener("click",function(e){
+    e.preventDefault();
+    localStorage.clear();
+    campos.innerHTML="";
+    muestra.innerHTML="";
+    personas.length=0;
+    totalCampos=1;
+    agregar("",31,12,anioActual);
 });
