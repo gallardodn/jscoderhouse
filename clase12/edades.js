@@ -96,6 +96,7 @@ function enviar(){
 
 // Defino la funcion de busqueda de resultados.
 function buscar(){
+    memorizarCampos();
     let busqueda = document.getElementById("busqueda").value;
     let resultado = personas.find((elemento) => elemento.nombre == busqueda);
     if (resultado) {
