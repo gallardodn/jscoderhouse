@@ -1,0 +1,43 @@
+body{
+    margin: 0;
+}
+header a{
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-bottom: 5px;
+    text-decoration: none;
+}
+form{
+    align-items: center;
+}
+header a:hover{
+    background-color: rgb(111, 157, 187);
+    color: rgb(0, 0, 0);
+}
+h1{
+    text-align: center;
+}
+h2{
+    text-align: center;
+    font-size: medium;
+}
+main{
+    padding-left: 3%;
+    padding-right: 3%;
+    padding-bottom: 3%;
+}
+.campo__lista{
+    display: block;
+    text-align: center;
+}
+.form__campos{
+    align-content: center;
+    align-items: center;
+}
+.main__formulario{
+padding: 20px;
+border-radius: 50px;
+background: linear-gradient(145deg, #cacaca, #f0f0f0);
+box-shadow:  7px 7px 14px #bebebe,
+             -7px -7px 14px #ffffff;
+            }
