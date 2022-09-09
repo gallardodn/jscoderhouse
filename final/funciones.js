@@ -30,7 +30,7 @@ function calculadora(){ // funcion principal que contiene el HTML, los botones y
     <hr>
     <h4>Empieza por cargar los nombres y las fechas de Nacimiento que quieras calcular:</h4>
     <div class="main__formulario">
-    <form id="formulario">
+    <div id="formulario">
         <div class="form__campos" id="campos">
         </div>
         <div class="campo__lista">¿Desea agregar a otra persona? <button id="agregar">Agregar</button></div><br><div> ¿Revizamos todas las personas agregadas?<button type="submit" id="boton">Ver</button></div>
@@ -40,7 +40,7 @@ function calculadora(){ // funcion principal que contiene el HTML, los botones y
         <hr>
         <h4>¿Como es?</h4>
         <p>Buscar las caracteristicas del signo Zodiacal de una de las persona agregadas por Nombre: <input type="text" id="busqueda"><button id="btnBuscar">Buscar</button></p>
-    </form>
+    </div>
     </div>
     <div id="busqueda"></div>
 `;
